@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>From zero to hero: raw data to mapped networks - 3&nbsp; Clustering</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../partial/multivariate/index.html" rel="next">
+<link href="../../partial/statistics/index.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../../style.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Clustering</span></span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">From zero to hero: raw data to mapped networks</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Network mapping 101</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../partial/preprocess/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Preprocessing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../partial/statistics/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../partial/clustering/index.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Clustering</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../partial/multivariate/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Multivariate</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../partial/model/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Model</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../partial/network/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Network analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../partial/cytoscape/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Cytoscape</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#heirarchical-clustering" id="toc-heirarchical-clustering" class="nav-link active" data-scroll-target="#heirarchical-clustering">Heirarchical clustering</a>
+  <ul class="collapse">
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#report" id="toc-report" class="nav-link" data-scroll-target="#report">Report</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Clustering</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<section id="check-out-the-user-manual-for-more-details-about-this-modules-features." class="level5">
+<h5 class="anchored" data-anchor-id="check-out-the-user-manual-for-more-details-about-this-modules-features.">Check out the <a href="https://creativedatasolutions.github.io/dave.docs/partial/cluster.html">user manual</a> for more details about this module’s features.</h5>
+</section>
+<section id="heirarchical-clustering" class="level2">
+<h2 class="anchored" data-anchor-id="heirarchical-clustering">Heirarchical clustering</h2>
+<section id="use-the-cluster-heirarchical-module-to-overview-an-unsupervised-grouping-of-the-data." class="level5">
+<h5 class="anchored" data-anchor-id="use-the-cluster-heirarchical-module-to-overview-an-unsupervised-grouping-of-the-data.">Use the <span class="txbox_green">cluster &gt;&gt; heirarchical</span> module to overview an unsupervised grouping of the data.</h5>
+</section>
+<section id="methods" class="level3">
+<h3 class="anchored" data-anchor-id="methods">Methods</h3>
+<div class="columns">
+<div class="column">
+<section id="specify-the-node-properties-and-what-dimensions-of-the-data-samples-rows-variables-columns-or-both-to-cluster.-for-example-the-selected-options-will-cluster-both-rows-and-columns-scale-the-data-based-on-subtraction-of-column-means-and-division-of-column-standard-deviations-annotate-the-heat-map-to-show-class-and-age-for-samples-and-fold-change-of-means-for-class-and-significantly-altered-variables." class="level5">
+<h5 class="anchored" data-anchor-id="specify-the-node-properties-and-what-dimensions-of-the-data-samples-rows-variables-columns-or-both-to-cluster.-for-example-the-selected-options-will-cluster-both-rows-and-columns-scale-the-data-based-on-subtraction-of-column-means-and-division-of-column-standard-deviations-annotate-the-heat-map-to-show-class-and-age-for-samples-and-fold-change-of-means-for-class-and-significantly-altered-variables.">Specify the <span class="txbox_blue">node</span> properties and what dimensions of the data (samples (rows), variables (columns) or both) to cluster. For example, the selected options will cluster both rows and columns, scale the data based on subtraction of column means and division of column standard deviations, annotate the heat map to show <code>class</code> and <code>age</code> for samples and fold-change of means for <code>class</code> and significantly altered variables.</h5>
+</section>
+</div><div class="column">
+<p><img src="imgs/nodes.png" class="bordered img-fluid"></p>
+</div>
+</div>
+<div class="columns">
+<div class="column">
+<section id="use-the-method-menu-to-specify-if-the-raw-data-or-correlations-should-be-clustered-the-distance-and-agglomeration-method-and-how-many-groups-should-be-extracted." class="level5">
+<h5 class="anchored" data-anchor-id="use-the-method-menu-to-specify-if-the-raw-data-or-correlations-should-be-clustered-the-distance-and-agglomeration-method-and-how-many-groups-should-be-extracted.">Use the <span class="txbox_blue">method</span> menu to specify if the raw data or correlations should be clustered, the distance and agglomeration method and how many groups should be extracted.</h5>
+</section>
+</div><div class="column">
+<p><img src="imgs/method.png" class="bordered img-fluid"></p>
+</div>
+</div>
+<div class="columns">
+<div class="column">
+
+</div><div class="column">
+
+</div>
+</div>
+<section id="select-calculate-and-view-the-cluster-analysis-methods-and-results." class="level5">
+<h5 class="anchored" data-anchor-id="select-calculate-and-view-the-cluster-analysis-methods-and-results.">Select <code>calculate</code> and view the cluster analysis methods and results.</h5>
+<p><img src="imgs/results.png" class="bordered img-fluid"> ### Explore and plot</p>
+</section>
+<section id="create-a-heatmap-or-dendrogram-to-view-the-clustering-results.-note-dendrograms-are-plotted-separately-for-samples-andor-columns." class="level5">
+<h5 class="anchored" data-anchor-id="create-a-heatmap-or-dendrogram-to-view-the-clustering-results.-note-dendrograms-are-plotted-separately-for-samples-andor-columns.">Create a <code>heatmap</code> or <code>dendrogram</code> to view the clustering results. Note, dendrograms are plotted separately for samples and/or columns.</h5>
+</section>
+<section id="heatmap-displaying-heirarchal-clusters-for-samples-andor-variables." class="level5">
+<h5 class="anchored" data-anchor-id="heatmap-displaying-heirarchal-clusters-for-samples-andor-variables.">Heatmap displaying heirarchal clusters for samples and/or variables.</h5>
+<p><img src="imgs/heatmap.png" class="bordered img-fluid"> ##### Dendrogram displaying heirarchal clusters for samples.</p>
+<p><img src="imgs/row_dendrogram.png" class="bordered img-fluid"></p>
+</section>
+<section id="dendrogram-displaying-heirarchal-clusters-for-variables." class="level5">
+<h5 class="anchored" data-anchor-id="dendrogram-displaying-heirarchal-clusters-for-variables.">Dendrogram displaying heirarchal clusters for variables.</h5>
+<p><img src="imgs/col_dendrogram.png" class="bordered img-fluid"></p>
+</section>
+<section id="create-a-report-capturing-the-methods-results-and-figures.-note-before-creating-the-report-use-the-plot-menu-to-render-the-plots-which-were-explored." class="level5">
+<h5 class="anchored" data-anchor-id="create-a-report-capturing-the-methods-results-and-figures.-note-before-creating-the-report-use-the-plot-menu-to-render-the-plots-which-were-explored.">Create a report capturing the methods results and figures. Note, before creating the report use the <span class="txbox_green">plot</span> menu to render the plots which were explored.</h5>
+</section>
+</section>
+<section id="report" class="level3">
+<h3 class="anchored" data-anchor-id="report">Report</h3>
+<p><img src="imgs/report.png" class="bordered img-fluid"> ### Save</p>
+<section id="next-save-the-clustering-results." class="level5">
+<h5 class="anchored" data-anchor-id="next-save-the-clustering-results.">Next <span class="txbox_blue">save</span> the clustering results.</h5>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../partial/statistics/index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Statistics</span></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../partial/multivariate/index.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Multivariate</span></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

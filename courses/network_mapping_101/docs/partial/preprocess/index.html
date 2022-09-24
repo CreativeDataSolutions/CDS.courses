@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>From zero to hero: raw data to mapped networks - 1&nbsp; Preprocessing</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../partial/statistics/index.html" rel="next">
+<link href="../../index.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../../style.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Preprocessing</span></span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">From zero to hero: raw data to mapped networks</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Network mapping 101</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../partial/preprocess/index.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Preprocessing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../partial/statistics/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../partial/clustering/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Clustering</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../partial/multivariate/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Multivariate</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../partial/model/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Model</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../partial/network/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Network analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../partial/cytoscape/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Cytoscape</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#merge" id="toc-merge" class="nav-link active" data-scroll-target="#merge"><span class="txtbox_green">Merge</span></a>
+  <ul class="collapse">
+  <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the data</a></li>
+  <li><a href="#prepare-the-data" id="toc-prepare-the-data" class="nav-link" data-scroll-target="#prepare-the-data">Prepare the data</a></li>
+  <li><a href="#explore-and-plot" id="toc-explore-and-plot" class="nav-link" data-scroll-target="#explore-and-plot">Explore and plot</a></li>
+  <li><a href="#report" id="toc-report" class="nav-link" data-scroll-target="#report">Report</a></li>
+  </ul></li>
+  <li><a href="#missing" id="toc-missing" class="nav-link" data-scroll-target="#missing"><span class="txtbox_green">Missing</span></a>
+  <ul class="collapse">
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#explore-and-plot-1" id="toc-explore-and-plot-1" class="nav-link" data-scroll-target="#explore-and-plot-1">Explore and plot</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Preprocessing</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<section id="check-out-the-user-manual-for-more-details-about-this-modules-features." class="level5">
+<h5 class="anchored" data-anchor-id="check-out-the-user-manual-for-more-details-about-this-modules-features.">Check out the <a href="https://creativedatasolutions.github.io/dave.docs/partial/preprocess.html">user manual</a> for more details about this module’s features.</h5>
+</section>
+<section id="merge" class="level2">
+<h2 class="anchored" data-anchor-id="merge"><span class="txtbox_green">Merge</span></h2>
+<section id="metabolomic-data-from-a-real-world-experiment-comparing-diabetic-to-non-diabetic-samples-will-be-loaded-and-preprocessed-for-analysis." class="level6">
+<h6 class="anchored" data-anchor-id="metabolomic-data-from-a-real-world-experiment-comparing-diabetic-to-non-diabetic-samples-will-be-loaded-and-preprocessed-for-analysis.">Metabolomic data from a real-world experiment comparing diabetic to non-diabetic samples will be loaded and preprocessed for analysis.</h6>
+</section>
+<section id="load-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="load-the-data">Load the data</h3>
+<section id="use-the-data-module-to-load-the-example-data.-select-the-load-menu-then-data-type-example-then-the-load-button.-next-select-dave-from-the-data-menu." class="level5">
+<h5 class="anchored" data-anchor-id="use-the-data-module-to-load-the-example-data.-select-the-load-menu-then-data-type-example-then-the-load-button.-next-select-dave-from-the-data-menu.">Use the <span class="txbox_green">data</span> module to load the example data. Select the <span class="txbox_blue">load</span> menu then <code>Data type</code> = <code>example</code> then the <code>load</code> button. Next select <code>dave</code> from the <span class="txbox_blue">data</span> menu.</h5>
+<p><img src="imgs/example_data.png" class="bordered img-fluid"></p>
+</section>
+</section>
+<section id="prepare-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="prepare-the-data">Prepare the data</h3>
+<div class="columns">
+<div class="column">
+<section id="use-the-preprocess-merge-module-to-format-the-data-set-and-merge-with-the-variable-meta-data.-select-the-blue-question-mark-icon-at-the-bottom-right-to-get-detailed-instructions." class="level6">
+<h6 class="anchored" data-anchor-id="use-the-preprocess-merge-module-to-format-the-data-set-and-merge-with-the-variable-meta-data.-select-the-blue-question-mark-icon-at-the-bottom-right-to-get-detailed-instructions.">Use the <span class="txbox_green">preprocess &gt;&gt; merge</span> module to format the data set and merge with the variable meta data. Select the blue question mark icon at the bottom right to get detailed instructions.</h6>
+</section>
+</div><div class="column">
+<p><img src="imgs/menu.png" class="bordered img-fluid"></p>
+</div>
+</div>
+<div class="columns">
+<div class="column">
+<section id="add-non-numeric-variables-to-the-row-meta-data." class="level6">
+<h6 class="anchored" data-anchor-id="add-non-numeric-variables-to-the-row-meta-data.">Add non-numeric variables to the row meta data.</h6>
+</section>
+</div><div class="column">
+<p><img src="imgs/row_meta.png" class="bordered img-fluid"></p>
+</div>
+</div>
+<div class="columns">
+<div class="column">
+<section id="merge-the-data-index-with-meta-data-describing-the-numeric-variables-e.g.-kegg-and-cid-identifiers." class="level6">
+<h6 class="anchored" data-anchor-id="merge-the-data-index-with-meta-data-describing-the-numeric-variables-e.g.-kegg-and-cid-identifiers.">Merge the data index with meta data describing the numeric variables (e.g.&nbsp;KEGG and CID identifiers).</h6>
+</section>
+</div><div class="column">
+<p><img src="imgs/col_meta.png" class="bordered img-fluid"></p>
+</div>
+</div>
+<section id="select-calculate-and-overview-the-results." class="level6">
+<h6 class="anchored" data-anchor-id="select-calculate-and-overview-the-results.">Select <code>calculate</code> and overview the results.</h6>
+<p><img src="imgs/results.png" class="bordered img-fluid"></p>
+</section>
+</section>
+<section id="explore-and-plot" class="level3">
+<h3 class="anchored" data-anchor-id="explore-and-plot">Explore and plot</h3>
+<section id="view-the-dimensions-for-the-created-data-assets." class="level6">
+<h6 class="anchored" data-anchor-id="view-the-dimensions-for-the-created-data-assets.">View the dimensions for the created data assets.</h6>
+<p><img src="imgs/dim_plot.png" class="bordered img-fluid"></p>
+</section>
+<section id="overview-missing-values-for-each-sample-row-and-variable.-connected-lines-show-missing-values-for-the-same-sample-for-multiple-variables." class="level5">
+<h5 class="anchored" data-anchor-id="overview-missing-values-for-each-sample-row-and-variable.-connected-lines-show-missing-values-for-the-same-sample-for-multiple-variables.">Overview missing values for each sample (row) and variable. Connected lines show missing values for the same sample for multiple variables.</h5>
+<p><img src="imgs/missing_plot.png" class="bordered img-fluid"></p>
+</section>
+</section>
+<section id="report" class="level3">
+<h3 class="anchored" data-anchor-id="report">Report</h3>
+<section id="create-a-report-capturing-the-methods-results-and-figures." class="level6">
+<h6 class="anchored" data-anchor-id="create-a-report-capturing-the-methods-results-and-figures.">Create a report capturing the methods results and figures.</h6>
+<p><img src="imgs/report.png" class="bordered img-fluid"></p>
+</section>
+<div class="columns">
+<div class="column">
+<section id="save-the-results-for-later-analyses." class="level5">
+<h5 class="anchored" data-anchor-id="save-the-results-for-later-analyses.">Save the results for later analyses.</h5>
+</section>
+</div><div class="column">
+<p><img src="imgs/save.png" class="bordered img-fluid"></p>
+</div>
+</div>
+<div class="columns">
+<div class="column">
+<section id="the-created-sample-and-variable-meta-data-can-be-viewed-in-the-data-menu-as-dave__row_meta-and-dave__col_meta-respectively." class="level5">
+<h5 class="anchored" data-anchor-id="the-created-sample-and-variable-meta-data-can-be-viewed-in-the-data-menu-as-dave__row_meta-and-dave__col_meta-respectively.">The created sample and variable meta data can be viewed in the <span class="txbox_green">data</span> menu as <code>dave__row_meta</code> and <code>dave__col_meta</code>, respectively.</h5>
+</section>
+</div><div class="column">
+<p><img src="imgs/saved_data.png" class="bordered img-fluid"></p>
+</div>
+</div>
+<section id="from-here-on-every-modules-analysis-will-follow-the-same-basic-workflow." class="level5">
+<h5 class="anchored" data-anchor-id="from-here-on-every-modules-analysis-will-follow-the-same-basic-workflow.">From here on every module’s analysis will follow the same basic workflow.</h5>
+</section>
+</section>
+</section>
+<section id="missing" class="level2">
+<h2 class="anchored" data-anchor-id="missing"><span class="txtbox_green">Missing</span></h2>
+<section id="methods" class="level3">
+<h3 class="anchored" data-anchor-id="methods">Methods</h3>
+<section id="next-remove-andor-impute-missing-values.-use-the-preprocess-missing-module-to-remove-andor-impute-missing-values.-note-this-is-an-important-step-to-make-sure-down-stream-analyses-are-compatible." class="level5">
+<h5 class="anchored" data-anchor-id="next-remove-andor-impute-missing-values.-use-the-preprocess-missing-module-to-remove-andor-impute-missing-values.-note-this-is-an-important-step-to-make-sure-down-stream-analyses-are-compatible.">Next remove and/or impute missing values. Use the <span class="txbox_green">preprocess &gt;&gt; missing</span> module to remove and/or impute missing values. Note this is an important step to make sure down stream analyses are compatible.</h5>
+</section>
+<div class="columns">
+<div class="column">
+<section id="use-the-filter-menu-to-drop-variables-which-have-greater-than-the-missing-cutoff-percent-missing-values-for-a-factor-of-interest-group.-for-examples-the-example-selection-will-remove-any-variables-which-have-more-than-50-missing-values-for-any-levels-of-the-class-factor." class="level5">
+<h5 class="anchored" data-anchor-id="use-the-filter-menu-to-drop-variables-which-have-greater-than-the-missing-cutoff-percent-missing-values-for-a-factor-of-interest-group.-for-examples-the-example-selection-will-remove-any-variables-which-have-more-than-50-missing-values-for-any-levels-of-the-class-factor.">Use the <span class="txbox_blue">filter</span> menu to drop variables which have &gt; greater than the <code>missing cutoff</code> percent missing values for a factor of interest, <code>group</code>. For examples the example selection will remove any variables which have more than 50% missing values for any levels of the <code>class</code> factor.</h5>
+</section>
+</div><div class="column">
+<p><img src="imgs/missing_filter.png" class="bordered img-fluid"></p>
+</div>
+</div>
+<div class="columns">
+<div class="column">
+<section id="use-the-impute-.txbox_blue-menu-to-impute-any-remaining-missing-values.-for-example-the-example-options-will-impute-the-remaining-missing-values-as-23-the-minimum-for-of-each-variable.-this-is-a-reasonable-assumption-if-values-are-missing-because-they-are-below-the-limits-of-detection." class="level5">
+<h5 class="anchored" data-anchor-id="use-the-impute-.txbox_blue-menu-to-impute-any-remaining-missing-values.-for-example-the-example-options-will-impute-the-remaining-missing-values-as-23-the-minimum-for-of-each-variable.-this-is-a-reasonable-assumption-if-values-are-missing-because-they-are-below-the-limits-of-detection.">Use the [impute] {.txbox_blue} menu to impute any remaining missing values. For example, the example options will impute the remaining missing values as 2/3 the minimum for of each variable. This is a reasonable assumption if values are missing because they are below the limits of detection.</h5>
+</section>
+</div><div class="column">
+<p><img src="imgs/missing_impute.png" class="bordered img-fluid"></p>
+</div>
+</div>
+<section id="select-calculate-and-overview-the-results.-1" class="level5">
+<h5 class="anchored" data-anchor-id="select-calculate-and-overview-the-results.-1">Select <code>calculate</code> and overview the results.</h5>
+<p><img src="imgs/missing_results.png" class="bordered img-fluid"></p>
+</section>
+</section>
+<section id="explore-and-plot-1" class="level3">
+<h3 class="anchored" data-anchor-id="explore-and-plot-1">Explore and plot</h3>
+<section id="review-missing-values-for-each-row-and-any-removed-variables-based-on-the-missingness-filter." class="level5">
+<h5 class="anchored" data-anchor-id="review-missing-values-for-each-row-and-any-removed-variables-based-on-the-missingness-filter.">Review missing values for each row and any removed variables based on the missingness filter.</h5>
+<p><img src="imgs/missing_summary.png" class="bordered img-fluid"></p>
+</section>
+<section id="review-any-remaining-missing-values-in-the-data." class="level5">
+<h5 class="anchored" data-anchor-id="review-any-remaining-missing-values-in-the-data.">Review any remaining missing values in the data.</h5>
+<p><img src="imgs/missing_missing.png" class="bordered img-fluid"></p>
+</section>
+<section id="next-create-a-report-and-save-the-analysis-results." class="level5">
+<h5 class="anchored" data-anchor-id="next-create-a-report-and-save-the-analysis-results.">Next create a report and <span class="txbox_blue">save</span> the analysis results.</h5>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Network mapping 101</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../partial/statistics/index.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><span class="txtbox_green">Statistics</span></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

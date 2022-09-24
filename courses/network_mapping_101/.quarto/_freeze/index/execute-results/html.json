@@ -1,0 +1,14 @@
+{
+  "hash": "b94bc691aa0a0c715d14cb065cdda045",
+  "result": {
+    "markdown": "---\nformat:\n  html:\n    toc: true\n    toc-title: On this page\n    toc-depth: 4 # default is 3\n    number-sections: false\n    anchor-sections: true\n    smooth-scroll: true\n    css: style.css\n    self-contained: true\n---\n\n::: {.cell}\n\n:::\n\n\n\n\n# Network mapping 101 {.unnumbered}\n##### Learn how to integrate statistical, functional, multivariate and machine learning results within a publication quality network \n\n##### The following tutorial will cover how to create a statistical analysis and machine learning integrated biochemical, structural similarity and correlation network.\n![](../network_mapping_2022/networks/figure.png){.bordered}\n\n### [Topics]{.txbox_green}\n* #### Multivariate exploratory analysis and visualization - identify or review your data analysis plan\n* #### Create, validate and visualize classification and regression machine learning predictive models\n* #### Calculate biochemical and empirical networks\n* #### Use network mapping to integrate data analysis results and create a publication quality network visualization\n\n\n### [Tutorials]{.txbox_green}\n* #### Preparing raw data for analysis\n* #### Multivariate data exploration \n* #### Supervised clustering \n* #### Machine learning – regression, classification, model validation and feature selection\n* #### Network analysis - biochemical, structural similarity and correlation networks \n* #### Network mapping – putting it all together\n\t\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

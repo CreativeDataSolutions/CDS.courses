@@ -1,0 +1,22 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "CDS Courses"
+  navbar:
+    background: '#00bc8c'
+    left:
+      - text: "Courses"
+        menu:
+          - href: courses/network_mapping_101/docs/index.html
+            text: 'Network mapping 101'
+
+format:
+  html:
+    theme: darkly
+    css: style.css
+    toc: true
+
+
+
