@@ -9,7 +9,7 @@ website:
     left:
       - text: "Courses"
         menu:
-          - href: ./courses/network_mapping_101/docs/index.html
+          - href: courses/network_mapping_101/docs/index.html
             text: 'Network mapping 101'
 
 format:
