@@ -1,0 +1,14 @@
+{
+  "hash": "3bf5ca853de9be4d1c2a5dbaa44d5c06",
+  "result": {
+    "markdown": "---\nformat:\n  html:\n    toc: true\n    toc-title: On this page\n    toc-depth: 4 # default is 3\n    number-sections: false\n    anchor-sections: true\n    smooth-scroll: true\n    css: style.css\n---\n\n::: {.cell}\n\n:::\n\n\n# Welcome\n\n##### This is the `DAVe - Data Analysis and Visualization engine` examples, demos and tutorials archive. Check out all the courses to find out how you can `get to know and love your data` by `connecting data with context`. \n\n##### See the [DAVe user manual](https://creativedatasolutions.github.io/dave.docs/) for details.\n\n##### Made with ❤️ by [CDS- Creative Data Solutions](https://creative-data.science/).\n\n##### © CDS 2022",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

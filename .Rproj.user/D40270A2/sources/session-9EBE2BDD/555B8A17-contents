@@ -1,0 +1,45 @@
+# NOTES - creating a website of courses
+# refs: https://quarto.org/docs/websites/
+#example: https://github.com/rstudio/r-manuals/blob/main/website/_quarto.yml
+
+#add to courses - !!! do after render !!!
+cp -R /c/Users/think/Dropbox/Software/dave/dave_docs/network_mapping_101/docs/. ./docs/courses/network_mapping_101/docs/.
+#also add to docs?
+
+# quarto set up - adding to path didn't link correctly
+export quarto=C:\\Users\\think\\AppData\\Local\\Programs\\Quarto\\bin\\quarto.cmd
+
+export name=.
+
+# #create
+# $quarto create-project $name --type website
+
+#render
+$quarto preview $name
+
+#copy self-contained courses to website
+
+cp -R /c/Users/think/Dropbox/Software/dave/dave_docs/network_mapping_101/docs/. ./docs/courses/network_mapping_101/docs/.
+cp -R /c/Users/think/Dropbox/Software/dave/dave_docs/network_mapping_101/materials courses/network_mapping_101/.
+
+export book_name='network_mapping_2022'
+
+# 'From zero to hero: raw data to mapped networks'
+#create
+# $quarto create-project $book_name --type book
+$quarto preview $name
+
+#random
+git config --global user.email "dgrapov@gmail.com"
+git config --global user.name "Dmitry Grapov"
+
+eval $(ssh-agent -s)
+ssh-add /c/Users/think/Dropbox/.ssh/no_pass
+
+#git push
+git add --all
+git commit -a -m 'add materials'
+git push origin gh-pages
+
+
+#TODO: convert to this website: https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/

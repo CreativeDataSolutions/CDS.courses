@@ -1,0 +1,16 @@
+{
+  "hash": "45224525fb371f1e93296f37148a2743",
+  "result": {
+    "markdown": "---\nformat:\n  html:\n    toc: true\n    toc-title: On this page\n    toc-depth: 4 # default is 3\n    number-sections: false\n    anchor-sections: true\n    smooth-scroll: true\n    css: ../../style.css\n    self-contained: true\n---\n\n::: {.cell}\n\n:::\n\n\n\n# [Data Preprocessing]{.txtbox_green}\n\n###### Metabolomic data from a real-world experiment comparing diabetic to non-diabetic samples will be loaded and preprocessed for analysis. \n\n## Load the data\n\n##### Use the [data]{.txbox_green} module to load the example data.\n![](../preprocess/imgs/example_data.png){.bordered}\n\n## Prepare the data for analysis\n\n::::: columns \n::: column \n###### Use the [preprocess >> merge]{.txbox_green} module to format the data set and merge with the variable meta data. Select the blue question mark icon at the bottom right to get detailed instructions.\n\n::: \n\n::: column \n![](../preprocess/imgs/menu.png){.bordered}\n:::\n:::\n\n::::: columns \n::: column \n###### Add non-numeric variables to the row meta data.\n\n::: \n\n::: column \n![](../preprocess/imgs/row_meta.png){.bordered}\n:::\n:::\n\n\n::::: columns \n::: column \n###### Merge the data index with meta data describing the numeric variables (e.g. KEGG and CID identifiers).\n\n::: \n\n::: column \n![](../preprocess/imgs/col_meta.png){.bordered}\n:::\n:::\n\n\n###### Select calculate and overview the results.\n![](../preprocess/imgs/results.png){.bordered}\n\n## Explore and plot.\n\n###### View the dimensions for the created data assets.\n![](../preprocess/imgs/dim_plot.png){.bordered}\n\n###### Overview missing values for each sample (row) and variable. Connected lines show missing values for the same sample for multiple variables.\n![](../preprocess/imgs/missing_plot.png){.bordered}\n\n## Report\n###### Create a report capturing the methods results and figures.\n![](../preprocess/imgs/report.png){.bordered}\n\n##### Save the results for later analyses.\n![](../preprocess/imgs/saved.png){.bordered}\n::::: columns \n::: column \n##### The created sample and variable meta data can be viewed in the [data]{.txbox_green} menu as `dave__row_meta` and `dave__col_meta`, respectively.\n::: \n\n::: column \n![](../preprocess/imgs/saved_data.png){.bordered}\n:::\n:::\n\n\n\n\n##### From here on every module's analysis will follow the same basic workflow.\n\n",
+    "supporting": [
+      "preproc_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,25 @@
+---
+format:
+  html:
+    toc: true
+    toc-title: On this page
+    toc-depth: 4 # default is 3
+    number-sections: false
+    anchor-sections: true
+    smooth-scroll: true
+    css: style.css
+---
+
+```{r, echo=FALSE,warning=FALSE,message=FALSE}
+suppressPackageStartupMessages(library('dave.help'))
+```
+
+# Welcome
+
+##### This is the `DAVe - Data Analysis and Visualization engine` examples, demos and tutorials archive. Check out all the courses to find out how you can `get to know and love your data` by `connecting data with context`. 
+
+##### See the [DAVe user manual](https://creativedatasolutions.github.io/dave.docs/) for details.
+
+##### Made with ❤️ by [CDS- Creative Data Solutions](https://creative-data.science/).
+
+##### © CDS 2022

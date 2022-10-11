@@ -1,0 +1,16 @@
+{
+  "hash": "0b001249fee19e07196d16149672ba18",
+  "result": {
+    "markdown": "---\nformat:\n  html:\n    toc: true\n    toc-title: On this page\n    toc-depth: 4 # default is 3\n    number-sections: false\n    anchor-sections: true\n    smooth-scroll: true\n    css: ../../style.css\n---\n\n::: {.cell}\n\n:::\n\n\n\n# Network mapping 101\n##### Learn how to integrate statistical, functional, multivariate and machine learning results within a publication quality network \n\n### [Topics]{.txtbox_gr}:\n* #### Multivariate exploratory analysis and visualization - identify or review your data analysis plan\n* #### Create, validate and visualize classification and regression machine learning predictive models\n* #### Calculate biochemical, structural similarity and empirical networks\n* #### Use network mapping to integrate data analysis results and create a publication quality network\n\n\n### [Tutorials]{.txtbox_gr}\n* #### Preparing data for analysis\n* #### Exploratory data analysis\n  * #### Statistical analysis \n  * #### Clustering \n  * #### Dimensional reduction\n* #### Machine Learning\n  * #### Classification\n  * #### Regression\n  * #### Feature selection\n  * #### Model validation\n* #### Network analysis  \n  * #### Biochemical \n  * #### Structural\n  * #### Correlation\n  * #### Network mapping\n  * #### Creating publication quality networks\n\t\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
