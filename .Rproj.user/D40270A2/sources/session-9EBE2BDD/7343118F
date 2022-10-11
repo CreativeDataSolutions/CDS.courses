@@ -3,7 +3,7 @@
     "path": "C:/Users/think/Dropbox/Software/dave/dave_docs/cds.courses/README.md",
     "project_path": "README.md",
     "type": "markdown",
-    "hash": "2704998267",
+    "hash": "1163203031",
     "contents": "",
     "dirty": false,
     "created": 1665448989595.0,
@@ -12,7 +12,7 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "10,3",
+        "cursorPosition": "12,4",
         "scrollLine": "0",
         "rmdVisualMode": "false",
         "rmdVisualWrapConfigured": "true",
@@ -21,11 +21,11 @@
         "rmdVisualModeLocation": "115:0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1665449482,
+    "lastKnownWriteTime": 1665449614,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1665449482805,
+    "last_content_update": 1665449614844,
     "read_only": false,
     "read_only_alternatives": []
 }
