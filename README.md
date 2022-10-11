@@ -2,7 +2,14 @@
 
 Creative courses in multivariate data analysis, machine learning and network mapping
 
-## [See website](https://creativedatasolutions.github.io/CDS.courses/)
+
+
+You can give this a try.
+
+# Table of Contents
+1. [Network mapping 101](#network-mapping-101)
+
+## [See all courses](https://creativedatasolutions.github.io/CDS.courses/)
 
 
 ### [Network mapping 101](https://creativedatasolutions.github.io/CDS.courses/courses/network_mapping_101/docs/)
