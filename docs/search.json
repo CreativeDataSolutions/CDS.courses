@@ -1,9 +1,23 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
     "title": "CDS Courses",
-    "section": "",
-    "text": "Welcome\n\nThis is the DAVe - Data Analysis and Visualization engine examples, demos and tutorials archive. Check out all the courses to find out how you can get to know and love your data by connecting data with context.\n\n\nSee the DAVe user manual for details.\n\n\nMade with ❤️ by CDS- Creative Data Solutions.\n\n\n© CDS 2022"
+    "section": "Welcome",
+    "text": "Welcome\n\nThis is the DAVe - Data Analysis and Visualization engine examples, demos and tutorials archive. Check out all the courses to find out how you can get to know and love your data by connecting data with context."
+  },
+  {
+    "objectID": "index.html#install",
+    "href": "index.html#install",
+    "title": "CDS Courses",
+    "section": "Install",
+    "text": "Install\n\nUse dave.minicran to install all R packages."
+  },
+  {
+    "objectID": "index.html#more-details",
+    "href": "index.html#more-details",
+    "title": "CDS Courses",
+    "section": "More details",
+    "text": "More details\n\nSee the DAVe user manual for more details.\n\n\nMade with ❤️ by CDS- Creative Data Solutions\n\n\n© CDS 2022"
   }
 ]

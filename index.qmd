@@ -14,12 +14,17 @@ format:
 suppressPackageStartupMessages(library('dave.help'))
 ```
 
-# Welcome
+## Welcome
 
 ##### This is the `DAVe - Data Analysis and Visualization engine` examples, demos and tutorials archive. Check out all the courses to find out how you can `get to know and love your data` by `connecting data with context`. 
 
-##### See the [DAVe user manual](https://creativedatasolutions.github.io/dave.docs/) for details.
+## Install
+##### Use `dave.minicran` to [install](https://creativedatasolutions.github.io/dave.minicran/) all `R packages`.
 
-##### Made with ❤️ by [CDS- Creative Data Solutions](https://creative-data.science/).
+## More details
+
+##### See the [DAVe user manual](https://creativedatasolutions.github.io/dave.docs/) for more details.
+
+##### Made with ❤️ by [CDS- Creative Data Solutions](https://creative-data.science/)
 
 ##### © CDS 2022
