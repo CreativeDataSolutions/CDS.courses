@@ -11,6 +11,8 @@ website:
         menu:
           - href: ./courses/network_mapping_101/docs/index.html
             text: 'Network mapping 101'
+          - text: 'R programming for Data Science  - beginner'
+            url: https://creativedatasolutions.github.io/R_programming_for_DS_beginner/
 
 format:
   html:
