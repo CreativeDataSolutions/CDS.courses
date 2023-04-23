@@ -5,7 +5,7 @@ Creative courses in multivariate data analysis, machine learning and network map
 ## [See more courses](https://creativedatasolutions.github.io/CDS.courses/)
 
 # Courses
-1. `04/22/2023` [R programming for Data Science - a beginner's guide]() 
+1. `04/22/2023` [R programming for Data Science - a beginner's guide](#r-programming-for-data-science---a-beginners-guide) 
 2. `10/16/2022` [Network mapping 101](#network-mapping-101)
 
  
