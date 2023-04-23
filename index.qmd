@@ -16,6 +16,8 @@ suppressPackageStartupMessages(library('dave.help'))
 
 ## Welcome
 
+## Select `Courses` in the navigation bar ([index](https://github.com/CreativeDataSolutions/CDS.courses)).
+
 ##### This is the `DAVe - Data Analysis and Visualization engine` examples, demos and tutorials archive. Check out all the courses to find out how you can `get to know and love your data` by `connecting data with context`. 
 
 ## Install
